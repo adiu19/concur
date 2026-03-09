@@ -7,7 +7,7 @@ import (
 	"time"
 )
 
-func worker(in chan float32, out chan float32) {
+func timeoutWorker(in chan float32, out chan float32) {
 	for secs := range in {
 		time.Sleep(time.Duration(secs) * time.Second)
 		out <- secs
@@ -20,7 +20,7 @@ func initTimeouts() {
 	defer close(inCh)
 	defer close(outCh)
 
-	go worker(inCh, outCh) // spawn worker on a different goroutine, main runs on current goroutine
+	go timeoutWorker(inCh, outCh) // spawn worker on a different goroutine, main runs on current goroutine
 
 	// the main runs a loop of sending jobs and waiting with a timer
 	for {
