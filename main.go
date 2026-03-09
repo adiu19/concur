@@ -1,6 +1,7 @@
 package main
 
 func main() {
-	initGenerateSquarePrint()
+	//initGenerateSquarePrint()
 	// initPingPong()
+	initTimeouts()
 }
