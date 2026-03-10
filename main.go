@@ -3,5 +3,6 @@ package main
 func main() {
 	//initGenerateSquarePrint()
 	// initPingPong()
-	initContextCancellation()
+	// initContextCancellation()
+	initWorkerPool()
 }
