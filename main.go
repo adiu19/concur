@@ -4,5 +4,6 @@ func main() {
 	//initGenerateSquarePrint()
 	// initPingPong()
 	// initContextCancellation()
-	initWorkerPool()
+	// initWorkerPool()
+	initFans()
 }
