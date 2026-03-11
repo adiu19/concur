@@ -5,5 +5,6 @@ func main() {
 	// initPingPong()
 	// initContextCancellation()
 	// initWorkerPool()
-	initFans()
+	//initFans()
+	initRateLimiter()
 }
