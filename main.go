@@ -6,5 +6,6 @@ func main() {
 	// initContextCancellation()
 	// initWorkerPool()
 	//initFans()
-	initRateLimiter()
+	//	initRateLimiter()
+	initCircuitBreaker()
 }

@@ -31,25 +31,18 @@ func initRateLimiter() {
 		go sharedWorker(i, tokens, &wg)
 	}
 
-	ticker := time.NewTicker(time.Duration(1) * time.Second)
+	ticker := time.NewTicker(time.Duration(333) * time.Millisecond)
 	defer ticker.Stop() // this also cleans up the goroutine that replenishes tokens
 
-	// bootstrap channel with initial token
-	for i := 1; i <= 3; i++ {
-		tokens <- i
-	}
-
-	currTokenID := 4
+	currTokenID := 1
 	// goroutine to replish token
 	go func() {
 		for range ticker.C {
-			// snapshot length so that a worker concurrently consuming a token doesn't cause us to replenish more than
-			// what is allowed
-			snapshottedLen := len(tokens)
-			for snapshottedLen < 3 {
-				tokens <- currTokenID
+			select {
+			case tokens <- currTokenID:
 				currTokenID++
-				snapshottedLen++
+			default:
+				// skip, bucket is full
 			}
 		}
 	}()
